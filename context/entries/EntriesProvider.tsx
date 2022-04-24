@@ -14,19 +14,19 @@ import { EntriesContext, entriesReducer } from "./"
         entries: [
             {
                 _id: uuidv4(),
-                description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+                description: 'Pending, Lorem ipsum dolor sit amet, consectetur adipisicing elit',
                 status: 'pending',
                 createdAt: Date.now(),
             },
             {
                 _id: uuidv4(),
-                description: 'Lorem 2',
+                description: 'In-progress, Lorem 2',
                 status: 'in-progress',
                 createdAt: Date.now() - 1000000,
             },
             {
                 _id: uuidv4(),
-                description: 'Lorem ipsum dolor 3',
+                description: 'Terminadas, Lorem ipsum dolor 3',
                 status: 'finished',
                 createdAt: Date.now() - 100000,
             },
