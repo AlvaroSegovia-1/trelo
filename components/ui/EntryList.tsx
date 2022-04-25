@@ -1,48 +1,41 @@
-import { List, Paper } from "@mui/material"
-import { FC, useContext, useMemo } from "react"
-import { EntriesContext } from "../../context/entries"
-import { EntryStatus } from "../../interfaces"
+/* eslint-disable react/react-in-jsx-scope */
+import { List, Paper } from '@mui/material'
+import { FC, useContext, useMemo } from 'react'
+import { EntriesContext } from '../../context/entries'
+import { EntryStatus } from '../../interfaces'
 import { EntryCard } from './'
 
 interface Props {
-
-    status: EntryStatus
+  status: EntryStatus
 }
 
-
-export const EntryList:FC<Props> = ({status}) => {
-
+export const EntryList: FC<Props> = ({ status }) => {
   console.log(status)
 
   const { entries } = useContext(EntriesContext)
 
   // const entriesByStatus = entries.filter( entry => entry.status === status)
 
-  const entriesByStatus = useMemo( () => entries.filter( entry => entry.status === status), [ entries ])
+  const entriesByStatus = useMemo(() => entries.filter(entry => entry.status === status), [entries])
 
   return (
     <div>
-        <Paper sx={{ height: 'calc(100vh - 180px)',
-         overflow: 'scroll',
-        /* backgroundColor: 'transparent', */
-        padding: '1px 6px'
+      <Paper
+        sx={{
+          height: 'calc(100vh - 180px)',
+          overflow: 'scroll',
+          /* backgroundColor: 'transparent', */
+          padding: '1px 6px'
         }}
-         elevation={20}>
-
+        elevation={20}
+      >
         {/* Cambiará dependiendo si se está haciendo drag o no */}
         <List sx={{ opacity: 1 }}>
-
-        {
-          entriesByStatus.map( entry => (
-            <EntryCard key={entry._id} entry={entry}/>
-          ))
-        }
-
-            
-            
+          {entriesByStatus.map(entry => (
+            <EntryCard key={entry._id} entry={entry} />
+          ))}
         </List>
-
-        </Paper>
+      </Paper>
     </div>
   )
 }

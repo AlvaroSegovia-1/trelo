@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { CssBaseline, ThemeProvider } from '@mui/material'
@@ -8,14 +9,14 @@ import { EntriesProvider } from '../context/entries'
 import { lightTheme, darkTheme } from '../themes'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return(
+  return (
     <EntriesProvider>
-        <UIProvider>
-          <ThemeProvider theme={darkTheme}>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </ThemeProvider>
-        </UIProvider>
+      <UIProvider>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </UIProvider>
     </EntriesProvider>
   )
 }
