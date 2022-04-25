@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import type { NextPage } from 'next'
-import { CardContent, CardHeader, Card, Grid, Typography } from '@mui/material'
+import { CardHeader, Card, Grid } from '@mui/material'
 
 import { Layout } from '../components/layouts'
 import { EntryList, NewEntry } from '../components/ui'
