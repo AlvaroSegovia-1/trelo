@@ -1,12 +1,17 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useContext, useState } from 'react'
 import { Button, Box, TextField } from '@mui/material'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined'
-import { entriesReducer } from '../../context/entries/entriesReducer'
+import { EntriesContext } from '../../context/entries'
+import { UIContext } from '../../context/ui'
 
 export const NewEntry = () => {
-  const [isAdding, setIsAdding] = useState(false)
+  const { addNewEntry } = useContext(EntriesContext)
+
+  const { isAddingEntry, setIsAddingEntry } = useContext(UIContext)
+
+  // const [isAdding, setIsAdding] = useState(false)
 
   const [inputValue, setInputValue] = useState('')
 
@@ -19,12 +24,16 @@ export const NewEntry = () => {
   const onSave = () => {
     if (inputValue.length === 0) return
 
-    console.log({ inputValue })
+    // console.log({ inputValue })
+    addNewEntry(inputValue)
+    setIsAddingEntry(false)
+    setTouched(false)
+    setInputValue('')
   }
 
   return (
     <Box sx={{ marginBottom: 2, paddingX: 2 }}>
-      {isAdding ? (
+      {isAddingEntry ? (
         <>
           <TextField
             fullWidth
@@ -41,7 +50,7 @@ export const NewEntry = () => {
           />
 
           <Box display="flex" justifyContent="space-between">
-            <Button variant="text" onClick={() => setIsAdding(false)}>
+            <Button variant="text" onClick={() => setIsAddingEntry(false)}>
               Cancelar
             </Button>
 
@@ -60,11 +69,14 @@ export const NewEntry = () => {
           startIcon={<AddCircleOutlineOutlinedIcon />}
           fullWidth
           variant="outlined"
-          onClick={() => setIsAdding(true)}
+          onClick={() => setIsAddingEntry(true)}
         >
           Agregar Tarea
         </Button>
       )}
     </Box>
   )
+}
+function addNewEntry(inputValue: string) {
+  throw new Error('Function not implemented.')
 }
